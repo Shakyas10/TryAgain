@@ -1,8 +1,20 @@
-node{
- stage('GIT Checkout'){
-   git 'https://github.com/Shakyas10/TryAgain.git'
-   }
- stage('Compile and Package'){
-   sh 'mvn package'
-   }
- }
+pipeline {
+   ageny any
+         stages {
+             stage ('---clean---') {
+                 step {
+                 bat "mvn clean"
+                 }
+             }
+         stage ('---test---') {
+              step {
+                  bat "mvn test"
+                 }
+             }
+          stage('---deploy---') {
+                   step {
+                        bat "mvn package"
+                      }
+                  }
+          }
+}
